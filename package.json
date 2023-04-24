@@ -1,0 +1,15 @@
+{
+  "name": "com.scg.uitoolkit",
+  "version": "0.0.1",
+  "displayName": "SCG UI Toolkit",
+  "description": "Contains Custom UI using UI Toolkit",
+  "unity": "2022.2",
+  "keywords": [
+    "scg"
+  ],
+  "author": {
+    "name": "Space Castle Games",
+    "email": "spacecastlegames@gmail.com",
+    "url": "https://www.spacecastlegames.ca"
+  }
+}

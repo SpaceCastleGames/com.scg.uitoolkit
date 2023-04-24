@@ -1,0 +1,16 @@
+{
+    "name": "scg.uitoolkit.editor",
+    "rootNamespace": "",
+    "references": [
+        "GUID:9cffdaac2853eab43921784b1d7a7d6f"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
