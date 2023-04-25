@@ -36,7 +36,7 @@ namespace scg.uitoolkit.editor
             openFileBtn.style.marginLeft = 5;
             Image folderImg = new Image();
 
-            folderImg.image = AssetDatabase.LoadAssetAtPath<Texture>("Packages/com.scg.localization/Editor/EditorUI/images/open-folder.png");
+            folderImg.image = AssetDatabase.LoadAssetAtPath<Texture>("Packages/com.scg.uitoolkit/Editor/images/open-folder.png");
 
             openFileBtn.Add(folderImg);
             openFileBtn.clicked += () =>
