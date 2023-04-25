@@ -14,7 +14,7 @@ namespace scg.uitoolkit.editor
         public override VisualElement CreatePropertyGUI(SerializedProperty property)
         {
             var ve = new VisualElement();
-
+            //property.serializedObject.Update();
             if (!"string".Equals(property.type) && string.IsNullOrWhiteSpace(property.stringValue))
             {
                 Label label = new Label("Attribute needs to be used on string!");
@@ -69,6 +69,7 @@ namespace scg.uitoolkit.editor
                 }
 
                 property.serializedObject.ApplyModifiedProperties();
+                
             };
             return openFileBtn;
         }
