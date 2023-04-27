@@ -36,6 +36,8 @@ namespace scg.uitoolkit.editor
             {
                 var codeList = (List<string>)info.Invoke(serializedObject.targetObject, null);
                 DropdownField dropdownField = new DropdownField(codeList, 0);
+                dropdownField.RegisterValueChangedCallback(v => property.stringValue = v.newValue);
+                
                 ve.Add(dropdownField);
             }
 
