@@ -1,6 +1,7 @@
 using scg.uitoolkit.runtime;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Rendering.VirtualTexturing;
@@ -14,7 +15,6 @@ namespace scg.uitoolkit.editor
 
         public override VisualElement CreatePropertyGUI(SerializedProperty property)
         {
-
             var atrib = attribute as TextDropdownAttribute;
 
             var ve = new VisualElement();
@@ -36,8 +36,20 @@ namespace scg.uitoolkit.editor
             {
                 var codeList = (List<string>)info.Invoke(serializedObject.targetObject, null);
                 DropdownField dropdownField = new DropdownField(codeList, 0);
-                dropdownField.RegisterValueChangedCallback(v => property.stringValue = v.newValue);
-                
+
+                //Select starting value.
+                int startingIndex = codeList.IndexOf(property.stringValue);
+                startingIndex=startingIndex<0?0:startingIndex;
+                dropdownField.index= startingIndex;
+
+                dropdownField.RegisterValueChangedCallback(v =>  Debug.Log($"Dropdownchanged to: {v.newValue}"));
+                dropdownField.RegisterValueChangedCallback(v => {
+                    Debug.Log($"Dropdownchanged to: {v.newValue}");
+                    property.stringValue = v.newValue;
+                    property.serializedObject.ApplyModifiedProperties();
+                });
+                //property.serializedObject.ApplyModifiedProperties();
+
                 ve.Add(dropdownField);
             }
 
