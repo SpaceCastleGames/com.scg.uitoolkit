@@ -41,14 +41,10 @@ namespace scg.uitoolkit.editor
                 int startingIndex = codeList.IndexOf(property.stringValue);
                 startingIndex=startingIndex<0?0:startingIndex;
                 dropdownField.index= startingIndex;
-
-                dropdownField.RegisterValueChangedCallback(v =>  Debug.Log($"Dropdownchanged to: {v.newValue}"));
                 dropdownField.RegisterValueChangedCallback(v => {
-                    Debug.Log($"Dropdownchanged to: {v.newValue}");
                     property.stringValue = v.newValue;
                     property.serializedObject.ApplyModifiedProperties();
                 });
-                //property.serializedObject.ApplyModifiedProperties();
 
                 ve.Add(dropdownField);
             }

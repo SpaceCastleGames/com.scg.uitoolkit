@@ -1,6 +1,6 @@
 {
   "name": "com.scg.uitoolkit",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "displayName": "SCG UI Toolkit",
   "description": "Contains Custom UI using UI Toolkit",
   "unity": "2022.2",
