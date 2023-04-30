@@ -5,7 +5,7 @@ using UnityEngine;
 namespace scg.uitoolkit.runtime
 {
     [Serializable]
-    public class SerializableDictionary<TKEY, TVALUE>: ISerializationCallbackReceiver
+    public class SerializableDictionary<TKEY, TVALUE> : ISerializationCallbackReceiver
     {
         [SerializeField] private List<DictionaryListPair<TKEY, TVALUE>> serializedList;
         private Dictionary<TKEY, TVALUE> deserializedDictionary;
@@ -16,7 +16,7 @@ namespace scg.uitoolkit.runtime
         {
             serializedList?.Clear();
             if (DeserializedDictionary == null) return;
-            if(serializedList == null) serializedList = new List<DictionaryListPair<TKEY, TVALUE>>();
+            if (serializedList == null) serializedList = new List<DictionaryListPair<TKEY, TVALUE>>();
             foreach (var kvp in DeserializedDictionary)
             {
                 serializedList.Add(new DictionaryListPair<TKEY, TVALUE>(kvp.Key, kvp.Value));
@@ -31,7 +31,23 @@ namespace scg.uitoolkit.runtime
                 DeserializedDictionary.Add(serializedList[i].Key, serializedList[i].Value);
         }
 
- 
+        public bool ContainsKey(TKEY key)
+        {
+            return DeserializedDictionary.ContainsKey(key);
+        }
+
+        public void Upsert(TKEY key, TVALUE value)
+        {
+            if (DeserializedDictionary.ContainsKey(key))
+            {
+                DeserializedDictionary[key] = value;
+            }
+            else
+            {
+                DeserializedDictionary.Add(key, value);
+            }
+        }
+
 
         public TVALUE this[TKEY key]
         {
