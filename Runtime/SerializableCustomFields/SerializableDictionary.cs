@@ -5,14 +5,14 @@ using UnityEngine;
 namespace scg.uitoolkit.runtime
 {
     [Serializable]
-    public class SerializableDictionary<TKEY, TVALUE>
+    public class SerializableDictionary<TKEY, TVALUE>: ISerializationCallbackReceiver
     {
         [SerializeField] private List<DictionaryListPair<TKEY, TVALUE>> serializedList;
         private Dictionary<TKEY, TVALUE> deserializedDictionary;
 
         public Dictionary<TKEY, TVALUE> DeserializedDictionary { get => deserializedDictionary; set => deserializedDictionary = value; }
 
-        public void Serialize()
+        public void OnBeforeSerialize()
         {
             serializedList?.Clear();
             if (DeserializedDictionary == null) return;
@@ -23,12 +23,20 @@ namespace scg.uitoolkit.runtime
             }
         }
 
-        public void Deserialize()
+        public void OnAfterDeserialize()
         {
             DeserializedDictionary = new Dictionary<TKEY, TVALUE>();
             if (serializedList == null) return;
             for (int i = 0; i < serializedList.Count; i++)
                 DeserializedDictionary.Add(serializedList[i].Key, serializedList[i].Value);
+        }
+
+ 
+
+        public TVALUE this[TKEY key]
+        {
+            get => DeserializedDictionary[key];
+            set => DeserializedDictionary.Add(key, value);
         }
 
     }
